@@ -1,18 +1,30 @@
 import React from 'react';
-import Home from './home'
+import Dashboard from './dashboard';
 
 function Orders({ onViewDetail }) {
-    const ordenes = [{
+    const ordenes = [
+    {
         fecha: "2024-09-24",
         documento: "ORD-123456",
         numero: "001"
-    }];
+    },
+    {
+        fecha: "2024-09-24",
+        documento: "ORD-123456",
+        numero: "001"
+    },
+    {
+        fecha: "2024-09-24",
+        documento: "ORD-123456",
+        numero: "001"
+    }
+];
 
     return (
         <div style={{ margin: '20px' }}>
-            <Home/>
+            <Dashboard />
             <h2>Ordenes</h2>
-            <table className="table mt-4">
+            <table className="table table-striped table-hover mt-4">
                 <thead>
                     <tr>
                         <th scope="col">Fecha de la orden</th>
@@ -27,8 +39,8 @@ function Orders({ onViewDetail }) {
                             <td>{orden.fecha}</td>
                             <td>{orden.documento}</td>
                             <td>{orden.numero}</td>
-                            <td>
-                                <button className="btn btn-info" onClick={() => onViewDetail(orden)}><i class="fa-solid fa-eye" style={{ margin: '0 10px 0 0' }}></i>Ver</button>
+                            <td style={{ textAlign: 'center' }}>
+                                <button className="btn btn-info" onClick={() => onViewDetail(orden)}><i class="fa-solid fa-eye"></i></button>
                             </td>
                         </tr>
                     ))}

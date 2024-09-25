@@ -7,7 +7,7 @@ import Login from './components/login'
 import Profile from './components/profile'
 import Orders from './components/orders'
 import Detail from './components/detail'
-import Dashboard from './components/dashboard'
+import Home from './components/home';
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
                 </div>
               } />
             <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/detail" element={<Detail />} />

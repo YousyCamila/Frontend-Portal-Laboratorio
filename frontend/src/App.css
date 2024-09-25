@@ -28,6 +28,33 @@ figure {
   height: auto;
   border-radius: 30px;
 }
+.sidebar {
+  width: 240px; 
+  height: 100vh;
+  padding: 25px;
+  background-color: #edfffd;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1)
+}
+.nav-link1 {
+  color: #343a40 !important;
+  font-weight: 500 !important;
+  border-radius: 5px;
+  transition: color 0.5s ease, background-color 0.5s ease;
+}
+.nav-link1:hover {
+  background-color: #0dcaf0;
+}
+.nav-link1 img {
+  margin-right: 10px;
+}
+.styleIcons1 {
+  width: 16px;
+  height: auto;
+  margin-right: 10px,
+}
+.filter {
+  justify-content: space-between;
+}
 .btn-detail {
   height: 35px;
   display: flex !important;
@@ -38,4 +65,14 @@ figure {
 }
 .styleDetail {
   max-height: 100vh !important;
+}
+.photoProfile {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+}
+.styleIcons {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
 }

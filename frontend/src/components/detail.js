@@ -30,7 +30,7 @@ function Detail({ order, onBack }) {
     };
     
     return (
-        <div className="container mt-4 styleDetail" style={{ overflow: 'hidden', padding: '20px' }}>
+        <div className="container styleDetail" style={{ overflow: 'hidden', padding: '0 20px' }}>
             <h2 className="mb-4">Nombre del grupo Hematología</h2>
             <h3>{prueba.nombre}</h3>
             <div className="card">
