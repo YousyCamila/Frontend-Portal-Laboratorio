@@ -1,99 +1,107 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 function Login() {
-    const recaptchaRef = useRef();
+    const [tipoIdentificacion, setTipoIdentificacion] = useState('');
+    const [numeroIdentificacion, setNumeroIdentificacion] = useState('');
+    const [fechaNacimiento, setFechaNacimiento] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        const recaptchaValue = recaptchaRef.current.getValue();
-        
-        if (recaptchaValue) {
-            // Enviar el valor al servidor para verificación
-            const response = await fetch('/api/verify-recaptcha', {
+        try {
+            const response = await fetch('http://localhost:3000/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ recaptchaValue }),
+                body: JSON.stringify({ tipoIdentificacion, numeroIdentificacion, fechaNacimiento, password }),
             });
 
-            const data = await response.json();
-            if (data.success) {
-                // Procesar el formulario
-                console.log('¡Formulario enviado exitosamente!');
-                navigate('/dashboard'); // Redirigir al dashboard
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                alert('Inicio de sesión exitoso');
+                navigate('/dashboard');
             } else {
-                console.error('Error en reCAPTCHA. Intenta nuevamente.');
+                const errorMessage = await response.text();
+                alert(errorMessage);
             }
-        } else {
-            console.error('Por favor completa el reCAPTCHA.');
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
         }
     };
 
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100 main">
-            <div className="d-flex" style={{ width: '100%', maxWidth: '800px' }}>
-                <form className="formStyle d-flex flex-column align-items-center" style={{ width: '50%', padding: '35px' }} onSubmit={handleSubmit}>
-                    <div className="header-text mb-4 text-center">
-                        <h2>Iniciar sesión</h2>
-                    </div>
-                    <div className="form-group mb-3 w-100">
-                        <label htmlFor="type_id">Tipo de identificación:</label>
-                        <select className="form-select" id="type_id" required>
-                            <option value="">Seleccionar</option>
-                            <option value="cedula">Cédula de Ciudadanía</option>
-                            <option value="tarjeta">Tarjeta de Identidad</option>
-                            <option value="cedula_extranjeria">Cédula de Extranjería</option>
-                            <option value="registro_civil">Registro Civil</option>
-                            <option value="pasaporte">Pasaporte</option>
-                            <option value="nit">NIT</option>
-                        </select>
-                    </div>
-                    <div className="form-group mb-3 w-100">
-                        <label htmlFor="num_id">Número de identificación</label>
-                        <input
-                            type="text"
-                            className="form-control form-control-lg fs-6"
-                            id="num_id"
-                            required
-                        />
-                    </div>
-                    <div className="form-group mb-3 w-100">
-                        <label htmlFor="date">Fecha de nacimiento</label>
-                        <input
-                            type="date"
-                            className="form-control form-control-lg fs-6"
-                            id="date"
-                            required
-                        />
-                    </div>
-                    
-                    <ReCAPTCHA
-                        ref={recaptchaRef}
-                        sitekey="TU_CLAVE_DEL_SITIO" // Reemplaza esto con tu Site Key
-                        size="normal" // Cambia a 'invisible' si quieres que no se muestre
-                    />
-                    
-                    <div className="text-center w-100" style={{ marginTop: '20px' }}>
-                        <button type="submit" className="btn btn-primary w-50">Iniciar Sesión</button>
-                    </div>
-                </form>
-                
-                <div className="figureStyle d-flex align-items-center justify-content-center" style={{ width: '50%', padding: '35px' }}>
-                    <figure>
-                        <img
-                            src="./assets/close-up-medical-team-ready-work.jpg"
-                            alt="Imagen de un equipo médico"
-                            className='imgStyle'
-                            style={{ maxWidth: '100%', height: 'auto', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' }}
-                        />
-                    </figure>
+        <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+            <form style={{ width: '80%', maxWidth: '400px' }} onSubmit={handleLogin}>
+                <div className="header-text mb-4 text-center">
+                    <h2>Iniciar Sesión</h2>
                 </div>
-            </div>
+                <div className="form-group mb-3">
+                    <label htmlFor="tipoIdentificacion">Tipo de Identificación</label>
+                    <select
+                        className="form-control"
+                        id="tipoIdentificacion"
+                        value={tipoIdentificacion}
+                        onChange={(e) => setTipoIdentificacion(e.target.value)}
+                        required
+                    >
+                        <option value="">Seleccionar</option>
+                        <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+                        <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+                        <option value="Pasaporte">Pasaporte</option>
+                    </select>
+                </div>
+                <div className="form-group mb-3">
+                    <label htmlFor="numeroIdentificacion">Número de Identificación</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="numeroIdentificacion"
+                        placeholder="Número de Identificación"
+                        value={numeroIdentificacion}
+                        onChange={(e) => setNumeroIdentificacion(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        id="fechaNacimiento"
+                        value={fechaNacimiento}
+                        onChange={(e) => setFechaNacimiento(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group mb-3">
+                    <label htmlFor="password">Contraseña</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">Iniciar Sesión</button>
+                <div className="row mt-3">
+                    <small>
+                        ¿No tiene una cuenta? 
+                        <button
+                            className="btn btn-link"
+                            onClick={() => navigate('/register')}
+                        >
+                            Registrarse
+                        </button>
+                    </small>
+                </div>
+            </form>
         </div>
     );
 }
