@@ -4,15 +4,19 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './components/login'
+import Register from './components/register'
 import Profile from './components/profile'
 import Orders from './components/orders'
 import Detail from './components/detail'
-import Home from './components/home';
+import Home from './components/home'
+import { UserProvider } from './components/userContext';
+
 
 
 function App() {
   return (
-    <div>
+    <UserProvider>
+      <div>
       <Router>
         <div>
           <Routes>
@@ -28,6 +32,7 @@ function App() {
                 </div>
               } />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Orders />} />
@@ -36,6 +41,7 @@ function App() {
         </div>
       </Router>
     </div>
+    </UserProvider>
   );
 }
 

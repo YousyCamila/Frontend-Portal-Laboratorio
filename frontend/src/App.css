@@ -28,6 +28,9 @@ figure {
   height: auto;
   border-radius: 30px;
 }
+.height-bg {
+  height: auto !important;
+}
 .sidebar {
   width: 240px; 
   height: 100vh;
