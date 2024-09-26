@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
+import CompleteProfile from './components/completeProfile';
 import Orders from './components/orders';
 import Detail from './components/detail';
 import Home from './components/home';
-import StepTwo from './components/stepTwo'; // Importa el nuevo componente
 import { UserProvider } from './components/userContext';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
                                 } />
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
-                            <Route path="/stepTwo" element={<StepTwo />} /> {/* Añade esta línea */}
+                            <Route path="/completeProfile" element={<CompleteProfile />} /> {/* Añade esta línea */}
                             <Route path="/dashboard" element={<Home />} />
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/orders" element={<Orders />} />
