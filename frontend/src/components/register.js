@@ -51,7 +51,7 @@ const RegistroUsuario = () => {
             });
 
             // Redirecciona a StepTwo
-            navigate('/stepTwo'); // Redirige a StepTwo
+            navigate('/login'); // Redirige a StepTwo
         } catch (error) {
             setError(error.message); // Mensaje de error
             setMessage(''); // Limpiar mensaje de éxito
