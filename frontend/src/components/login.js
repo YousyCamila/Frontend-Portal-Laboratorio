@@ -6,7 +6,7 @@ function Login() {
     const [numeroIdentificacion, setNumeroIdentificacion] = useState('');
     const [fechaNacimiento, setFechaNacimiento] = useState('');
     const [password, setPassword] = useState('');
-    const [rol, setRol] = useState(''); // Estado para el rol
+    const [rol, setRol] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -17,7 +17,7 @@ function Login() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ tipoIdentificacion, numeroIdentificacion, fechaNacimiento, password, rol }), // Agregar rol aquí
+                body: JSON.stringify({ tipoIdentificacion, numeroIdentificacion, fechaNacimiento, password, rol }),
             });
 
             if (response.ok) {
@@ -36,9 +36,9 @@ function Login() {
 
     return (
         <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-            <div className="row w-100">
-                <div className="col-md-6 d-flex justify-content-center">
-                    <div className="card shadow-sm rounded" style={{ width: '30rem' }}>
+            <div className="row w-75" style={{ justifyContent: 'center'}}> {/* Reducción del tamaño de la fila */}
+                <div className="col-lg-5 col-md-6 d-flex justify-content-center mb-4 mb-md-0">
+                    <div className="card shadow-sm rounded" style={{ width: '20rem' }}> {/* Tamaño reducido del formulario */}
                         <div className="card-body">
                             <form className="w-100" onSubmit={handleLogin}>
                                 <div className="text-center mb-4">
@@ -125,13 +125,13 @@ function Login() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6 d-flex justify-content-center">
-                    <div className="shadow-sm rounded overflow-hidden" style={{ width: '85%' }}>
+                <div className="col-lg-5 col-md-6 d-flex justify-content-center">
+                    <div className="shadow-sm rounded overflow-hidden" style={{ width: '100%' }}> {/* Ajuste para mantener proporcionalidad */}
                         <img
                             src="/assets/close-up-medical-team-ready-work.jpg"
-                            className="img-fluid shadow-sm rounded overflow-hidden"
+                            className="img-fluid shadow-sm rounded"
                             alt="Descripción de la imagen"
-                            style={{ borderRadius: '0.5rem' }} // Bordes redondeados para la imagen
+                            style={{ width: '100%', height: 'auto', objectFit: 'cover' }} // Reducción del tamaño de la imagen
                         />
                     </div>
                 </div>

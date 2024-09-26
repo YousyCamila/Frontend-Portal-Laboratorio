@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const RegistroUsuario = () => {
-    const navigate = useNavigate(); // Inicializa useNavigate
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         tipoIdentificacion: '',
         numeroIdentificacion: '',
@@ -37,10 +37,9 @@ const RegistroUsuario = () => {
                 throw new Error('Error al registrar el usuario');
             }
 
-            setMessage('Registro guardado con éxito'); // Mensaje de éxito
-            setError(''); // Limpiar errores
+            setMessage('Registro guardado con éxito');
+            setError('');
 
-            // Resetea el formulario
             setFormData({
                 tipoIdentificacion: '',
                 numeroIdentificacion: '',
@@ -49,90 +48,122 @@ const RegistroUsuario = () => {
                 rol: ''
             });
 
-            // Redirecciona a StepTwo
-            navigate('/login'); // Redirige a StepTwo
+            navigate('/login');
         } catch (error) {
-            setError(error.message); // Mensaje de error
-            setMessage(''); // Limpiar mensaje de éxito
-            console.error(error);
+            setError(error.message);
+            setMessage('');
         }
     };
 
     return (
-        <div className="container mt-4">
-            <h2>Registro de Usuario</h2>
-            {message && <div className="alert alert-success">{message}</div>}
-            {error && <div className="alert alert-danger">{error}</div>}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group mb-3">
-                    <label htmlFor="tipoIdentificacion">Tipo de Identificación</label>
-                    <select
-                        id="tipoIdentificacion"
-                        name="tipoIdentificacion"
-                        className="form-control"
-                        value={formData.tipoIdentificacion}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="">Seleccionar</option>
-                        <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
-                        <option value="Tarjeta de identidad">Tarjeta de identidad</option>
-                        <option value="Pasaporte">Pasaporte</option>
-                    </select>
+        <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+            <div className="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '30rem' }}>
+                <div className="card-body">
+                    <h3 className="card-title text-center mb-4">Registro de Usuario</h3>
+                    
+                    {/* Mostrar mensajes de éxito o error */}
+                    {message && <div className="alert alert-success">{message}</div>}
+                    {error && <div className="alert alert-danger">{error}</div>}
+
+                    <form onSubmit={handleSubmit}>
+                        {/* Tipo de Identificación */}
+                        <div className="form-group mb-3">
+                            <label htmlFor="tipoIdentificacion" className="form-label">Tipo de Identificación</label>
+                            <select
+                                id="tipoIdentificacion"
+                                name="tipoIdentificacion"
+                                className="form-select"
+                                value={formData.tipoIdentificacion}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">Seleccionar</option>
+                                <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+                                <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            </select>
+                        </div>
+
+                        {/* Número de Identificación */}
+                        <div className="form-group mb-3">
+                            <label htmlFor="numeroIdentificacion" className="form-label">Número de Identificación</label>
+                            <input
+                                type="text"
+                                id="numeroIdentificacion"
+                                name="numeroIdentificacion"
+                                className="form-control"
+                                placeholder="Número de Identificación"
+                                value={formData.numeroIdentificacion}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        {/* Fecha de Nacimiento */}
+                        <div className="form-group mb-3">
+                            <label htmlFor="fechaNacimiento" className="form-label">Fecha de Nacimiento</label>
+                            <input
+                                type="date"
+                                id="fechaNacimiento"
+                                name="fechaNacimiento"
+                                className="form-control"
+                                value={formData.fechaNacimiento}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        {/* Contraseña */}
+                        <div className="form-group mb-3">
+                            <label htmlFor="password" className="form-label">Contraseña</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form-control"
+                                placeholder="Contraseña"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        {/* Rol */}
+                        <div className="form-group mb-4">
+                            <label htmlFor="rol" className="form-label">Rol</label>
+                            <select
+                                id="rol"
+                                name="rol"
+                                className="form-select"
+                                value={formData.rol}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">Seleccionar</option>
+                                <option value="Paciente">Paciente</option>
+                                <option value="Profesional">Profesional</option>
+                            </select>
+                        </div>
+
+                        {/* Botón de enviar */}
+                        <button type="submit" className="btn btn-primary w-100 mb-3">Registrar</button>
+
+                        {/* Link de redirección al login */}
+                        <div className="text-center">
+                            <small>
+                                ¿Ya tienes una cuenta?{' '}
+                                <button
+                                    className="btn btn-link p-0"
+                                    style={{ textDecoration: 'none' }}
+                                    onClick={() => navigate('/login')}
+                                >
+                                    Iniciar sesión
+                                </button>
+                            </small>
+                        </div>
+                    </form>
                 </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="numeroIdentificacion">Número de Identificación</label>
-                    <input
-                        type="text"
-                        id="numeroIdentificacion"
-                        name="numeroIdentificacion"
-                        className="form-control"
-                        value={formData.numeroIdentificacion}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
-                    <input
-                        type="date"
-                        id="fechaNacimiento"
-                        name="fechaNacimiento"
-                        className="form-control"
-                        value={formData.fechaNacimiento}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        className="form-control"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="rol">Rol</label>
-                    <select
-                        id="rol"
-                        name="rol"
-                        className="form-control"
-                        value={formData.rol}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="">Seleccionar</option>
-                        <option value="paciente">Paciente</option>
-                        <option value="profesional">Profesional</option>
-                    </select>
-                </div>
-                <button type="submit" className="btn btn-primary">Registrar</button>
-            </form>
+            </div>
         </div>
     );
 };

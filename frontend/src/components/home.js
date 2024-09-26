@@ -9,7 +9,7 @@ import CompleteProfile from './completeProfile';
 
 function Home() {
     const usuario = {
-        name: "Juan Pérez",
+        name: "Juan Perez",
         image: "./assets/portrait-man-laughing.jpg",
     };
 
