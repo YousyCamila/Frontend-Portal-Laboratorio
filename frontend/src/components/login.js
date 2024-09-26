@@ -54,9 +54,8 @@ function Login() {
                                         required
                                     >
                                         <option value="">Seleccionar rol</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Usuario">Usuario</option>
-                                        <option value="Invitado">Invitado</option>
+                                        <option value="Paciente">Paciente</option>
+                                        <option value="Profesional">Profesional</option>
                                     </select>
                                 </div>
                                 <div className="mb-3">
@@ -130,7 +129,7 @@ function Login() {
                     <div className="shadow-sm rounded overflow-hidden" style={{ width: '85%' }}>
                         <img
                             src="/assets/close-up-medical-team-ready-work.jpg"
-                            className="img-fluid"
+                            className="img-fluid shadow-sm rounded overflow-hidden"
                             alt="Descripción de la imagen"
                             style={{ borderRadius: '0.5rem' }} // Bordes redondeados para la imagen
                         />
