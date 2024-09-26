@@ -43,7 +43,6 @@ const CompleteProfile = ({ initialRol }) => {
             }
 
             alert(`Registro de ${initialRol} exitoso`);
-            // Resetear formularios o redirigir según sea necesario
             resetForm();
         } catch (error) {
             console.error('Error al registrar:', error);
@@ -82,18 +81,15 @@ const CompleteProfile = ({ initialRol }) => {
         <div className="d-flex justify-content-center align-items-center vh-100" style={{ backgroundColor: '#f8f9fa' }}>
             <form
                 onSubmit={handleSubmit}
+                className="bg-white p-4 rounded shadow-sm"
                 style={{
-                    width: '80%',
-                    maxWidth: '800px',
-                    backgroundColor: 'white',
-                    padding: '20px',
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+                    maxWidth: '800px', // Ancho máximo del formulario
+                    width: 'auto',     // Permitir ajuste automático
                 }}
             >
-                <h2 className="text-center mb-4">Registro</h2>
+                <h2 className="text-center">Registro</h2>
 
-                <div className="mb-3">
+                <div className="">
                     <label className="form-label">Rol:</label>
                     <p className="form-control-plaintext">{initialRol}</p>
                 </div>
@@ -101,124 +97,159 @@ const CompleteProfile = ({ initialRol }) => {
                 {initialRol === 'paciente' ? (
                     <>
                         <h4>Formulario Paciente</h4>
-                        <InputField
-                            label="Apellido 1"
-                            value={informacionPaciente.apellido1}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, apellido1: value })}
-                            required
-                        />
-                        <InputField
-                            label="Apellido 2"
-                            value={informacionPaciente.apellido2}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, apellido2: value })}
-                        />
-                        <InputField
-                            label="Nombre 1"
-                            value={informacionPaciente.nombre1}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, nombre1: value })}
-                            required
-                        />
-                        <InputField
-                            label="Nombre 2"
-                            value={informacionPaciente.nombre2}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, nombre2: value })}
-                        />
-                        <SelectField
-                            label="Sexo Biológico"
-                            value={informacionPaciente.sexoBiologico}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, sexoBiologico: value })}
-                            options={['masculino', 'femenino']}
-                            required
-                        />
-                        <InputField
-                            label="Dirección"
-                            value={informacionPaciente.direccion}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, direccion: value })}
-                            required
-                        />
-                        <InputField
-                            label="Teléfono Móvil"
-                            value={informacionPaciente.telefonoMovil}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, telefonoMovil: value })}
-                            required
-                        />
-                        <InputField
-                            label="Email"
-                            type="email"
-                            value={informacionPaciente.email}
-                            onChange={(value) => setInformacionPaciente({ ...informacionPaciente, email: value })}
-                            required
-                        />
+                        <div className="row">
+                            <InputField
+                                className="col-6"
+                                label="Apellido 1"
+                                value={informacionPaciente.apellido1}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, apellido1: value })}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Apellido 2"
+                                value={informacionPaciente.apellido2}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, apellido2: value })}
+                            />
+                        </div>
+                        <div className="row">
+                            <InputField
+                                className="col-6"
+                                label="Nombre 1"
+                                value={informacionPaciente.nombre1}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, nombre1: value })}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Nombre 2"
+                                value={informacionPaciente.nombre2}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, nombre2: value })}
+                            />
+                        </div>
+                        <div className="row">
+                            <SelectField
+                                className="col-6"
+                                label="Sexo Biológico"
+                                value={informacionPaciente.sexoBiologico}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, sexoBiologico: value })}
+                                options={['masculino', 'femenino']}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Dirección"
+                                value={informacionPaciente.direccion}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, direccion: value })}
+                                required
+                            />
+                        </div>
+                        <div className="row mb-3">
+                            <InputField
+                                className="col-6"
+                                label="Teléfono Móvil"
+                                value={informacionPaciente.telefonoMovil}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, telefonoMovil: value })}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Email"
+                                type="email"
+                                value={informacionPaciente.email}
+                                onChange={(value) => setInformacionPaciente({ ...informacionPaciente, email: value })}
+                                required
+                            />
+                        </div>
                     </>
                 ) : (
                     <>
                         <h4>Formulario Profesional</h4>
-                        <InputField
-                            label="Apellido 1"
-                            value={informacionProfesional.apellido1}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, apellido1: value })}
-                            required
-                        />
-                        <InputField
-                            label="Apellido 2"
-                            value={informacionProfesional.apellido2}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, apellido2: value })}
-                        />
-                        <InputField
-                            label="Nombre 1"
-                            value={informacionProfesional.nombre1}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, nombre1: value })}
-                            required
-                        />
-                        <InputField
-                            label="Nombre 2"
-                            value={informacionProfesional.nombre2}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, nombre2: value })}
-                        />
-                        <SelectField
-                            label="Sexo Biológico"
-                            value={informacionProfesional.sexoBiologico}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, sexoBiologico: value })}
-                            options={['masculino', 'femenino']}
-                            required
-                        />
-                        <InputField
-                            label="Dirección"
-                            value={informacionProfesional.direccion}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, direccion: value })}
-                            required
-                        />
-                        <InputField
-                            label="Teléfono Móvil"
-                            value={informacionProfesional.telefonoMovil}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, telefonoMovil: value })}
-                            required
-                        />
-                        <InputField
-                            label="Email"
-                            type="email"
-                            value={informacionProfesional.email}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, email: value })}
-                            required
-                        />
-                        <InputField
-                            label="Especialidad"
-                            value={informacionProfesional.especialidad}
-                            onChange={(value) => setInformacionProfesional({ ...informacionProfesional, especialidad: value })}
-                            required
-                        />
+                        <div className="row">
+                            <InputField
+                                className="col-6"
+                                label="Apellido 1"
+                                value={informacionProfesional.apellido1}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, apellido1: value })}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Apellido 2"
+                                value={informacionProfesional.apellido2}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, apellido2: value })}
+                            />
+                        </div>
+                        <div className="row">
+                            <InputField
+                                className="col-6"
+                                label="Nombre 1"
+                                value={informacionProfesional.nombre1}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, nombre1: value })}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Nombre 2"
+                                value={informacionProfesional.nombre2}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, nombre2: value })}
+                            />
+                        </div>
+                        <div className="row">
+                            <SelectField
+                                className="col-6"
+                                label="Sexo Biológico"
+                                value={informacionProfesional.sexoBiologico}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, sexoBiologico: value })}
+                                options={['masculino', 'femenino']}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Dirección"
+                                value={informacionProfesional.direccion}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, direccion: value })}
+                                required
+                            />
+                        </div>
+                        <div className="row">
+                            <InputField
+                                className="col-6"
+                                label="Teléfono Móvil"
+                                value={informacionProfesional.telefonoMovil}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, telefonoMovil: value })}
+                                required
+                            />
+                            <InputField
+                                className="col-6"
+                                label="Email"
+                                type="email"
+                                value={informacionProfesional.email}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, email: value })}
+                                required
+                            />
+                        </div>
+                        <div className="row mb-3">
+                            <InputField
+                                className="col-6"
+                                label="Especialidad"
+                                value={informacionProfesional.especialidad}
+                                onChange={(value) => setInformacionProfesional({ ...informacionProfesional, especialidad: value })}
+                                required
+                            />
+                        </div>
                     </>
                 )}
 
-                <button type="submit" className="btn btn-primary">Registrar</button>
+                <button type="submit" className="btn btn-primary w-100">Registrar</button>
             </form>
         </div>
     );
 };
 
 // Componente reutilizable para campos de entrada
-const InputField = ({ label, type = 'text', value, onChange, required }) => (
-    <div className="mb-3">
+const InputField = ({ label, type = 'text', value, onChange, required, className }) => (
+    <div className={` ${className}`}>
         <label className="form-label">{label}{required && ' *'}</label>
         <input
             type={type}
@@ -231,8 +262,8 @@ const InputField = ({ label, type = 'text', value, onChange, required }) => (
 );
 
 // Componente reutilizable para campos de selección
-const SelectField = ({ label, value, onChange, options, required }) => (
-    <div className="mb-3">
+const SelectField = ({ label, value, onChange, options, required, className }) => (
+    <div className={` ${className}`}>
         <label className="form-label">{label}{required && ' *'}</label>
         <select className="form-control" value={value} onChange={(e) => onChange(e.target.value)} required={required}>
             <option value="">Selecciona una opción</option>

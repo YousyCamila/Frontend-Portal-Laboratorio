@@ -50,21 +50,21 @@ function Home() {
 
     return (
         <div className="d-flex">
-            <div className="sidebar border-end" style={{ width: '250px' }}>
+            <div className="sidebar border-end" style={{ width: '260px' }}>
                 <ul className="nav flex-column">
                     <li className="nav-item">
                         <a className="nav-link nav-link1" href="/dashboard">
-                            <img src='./assets/home-solid.svg' alt='Home' className='styleIcons1'></img> Home
+                            <img src='./assets/home-solid.svg' alt='Home' className='styleIcons1'></img>Home
                         </a>
                     </li>
                     <li className="nav-item" onClick={handleViewRegister}> {/* Añadir enlace para el registro */}
                         <a className="nav-link nav-link1" href="#!">
-                            <img src='./assets/user-plus-solid.svg' alt='Completa tu perfil' className='styleIcons1'></img>Completa tu perfil
+                            <img src='./assets/user-circle-regular.svg' alt='Completa tu perfil' className='styleIcons1'></img>Completa tu perfil
                         </a>
                     </li>
                     <li className="nav-item" onClick={handleViewProfile}>
                         <a className="nav-link nav-link1" href="#!">
-                            <img src='./assets/user-circle-regular.svg' alt='Perfil de usuario' className='styleIcons1'></img> Perfil de usuario
+                            <img src='./assets/user-circle-regular.svg' alt='Perfil de usuario' className='styleIcons1'></img>Perfil de usuario
                         </a>
                     </li>
                     
@@ -99,6 +99,8 @@ function Home() {
                 ) : (
                     <Orders onViewDetail={handleViewDetail} />
                 )}
+
+{}
             </div>
         </div>
     );

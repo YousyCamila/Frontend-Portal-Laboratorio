@@ -37,7 +37,6 @@ const RegistroUsuario = () => {
                 throw new Error('Error al registrar el usuario');
             }
 
-            const result = await response.json();
             setMessage('Registro guardado con éxito'); // Mensaje de éxito
             setError(''); // Limpiar errores
 
